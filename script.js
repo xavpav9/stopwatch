@@ -50,15 +50,19 @@ reset.addEventListener("click", evt => {
   start.textContent = "Start";
   start.classList.add("green");
   start.classList.remove("orange");
-  if (!evt.isTrusted) {
-    console.log("not trusted");
+});
+
+window.addEventListener("keypress", evt => {
+  console.log(evt.key);
+  if (!(evt.ctrlKey || evt.altKey || evt.metaKey)) {
+    if (evt.key.toLowerCase() === "k" || evt.key === "Enter" || evt.key === " ") start.dispatchEvent(new Event("click"));  
+    if (evt.key.toLowerCase() === "r") reset.dispatchEvent(new Event("click"));  
   };
 });
 
 function updateTimer(baseTime, currentTime, savedTime) {
   current = currentTime - baseTime + savedTime;
   const values = makeReadable(current);
-  if (+values[0] >= 24) reset.dispatchEvent(new Event("click"));
   for (let i = 0; i < 5; ++i) {
     timer.children[i].children[0].textContent = values[i];
     timer.children[i].children[1].textContent = ["d", "h", "m", "s", "ms"][i];
