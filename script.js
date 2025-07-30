@@ -71,7 +71,7 @@ function updateTimer(baseTime, currentTime, savedTime) {
 };
 
 function makeReadable(time) {
-  let days = String(Math.floor((time / 1000 / 60 / 60 / 24)));
+  let days = String(Math.floor((time / 1000 / 60 / 60 / 24) % 100));
   let hours = String(Math.floor((time / 1000 / 60 / 60) % 24));
   let minutes = String(Math.floor((time / 1000 / 60) % 60));
   let seconds = String(Math.floor((time / 1000) % 60));
